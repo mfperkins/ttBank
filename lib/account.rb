@@ -1,30 +1,28 @@
 # understands a customer's balance
 
+require_relative 'transaction_history'
+
 class Account
 
-  attr_reader :balance, :transaction_history, :statement
+  attr_reader :balance, :transaction_history
 
-  def initialize
+  def initialize(transaction_history = TransactionHistory)
     @balance = 0
-    @transaction_history = []
+    @transaction_history = transaction_history.new
   end
 
-  def deposit(amount, transaction = Transaction)
-    deposit = transaction.new("credit", amount)
-    @balance += deposit.amount
-    deposit.set_balance(balance)
-    @transaction_history.push(deposit)
+  def deposit(amount)
+    transaction_history.deposit(amount)
+    @balance += amount
   end
 
-  def withdrawal(amount, transaction = Transaction)
-    withdrawal = transaction.new("debit", amount)
-    @balance -= withdrawal.amount
-    withdrawal.set_balance(balance)
-    @transaction_history.push(withdrawal)
+  def withdrawal(amount)
+    transaction_history.withdrawal(amount)
+    @balance -= amount
   end
 
   def statement
-    transactions_to_print = transaction_history.reverse
+    transactions_to_print = transaction_history.log.reverse
     puts "    date    || credit || debit || balance"
     transactions_to_print.each do |transaction|
       puts "#{get_date(transaction)} || #{get_credit_amount(transaction)} || #{get_debit_amount(transaction)} || #{transaction.current_balance}"

@@ -2,12 +2,18 @@ require 'account'
 
 describe Account do
 
-  subject(:account) { described_class.new }
+  subject(:account) { described_class.new(transactionHistory_class) }
+  let(:transactionHistory_class) { double :transactionHistory_class, new: transactionHistory }
+  let(:transactionHistory) {double :transactionHistory, deposit: nil, withdrawal: nil, log: [transaction1, transaction2, transaction3]}
+  let(:transaction1) {double :transaction1, time: Time.new, type: "credit", amount: 1000, current_balance: 1000 }
+  let(:transaction2) {double :transaction2, time: Time.new, type: "credit", amount: 2000, current_balance: 3000 }
+  let(:transaction3) {double :transaction3, time: Time.new, type: "debit", amount: 500, current_balance: 2500 }
+
 
   describe 'On initialization it ...' do
 
     it 'should have an empty transaction history' do
-      expect(subject.transaction_history).to eq([])
+      expect(subject.transaction_history).to eq(transactionHistory)
     end
 
     it "should have a balance lf 0" do
@@ -26,9 +32,6 @@ describe Account do
       expect(subject.balance).to eq(1000)
     end
 
-    it 'should add a transaction to the history' do
-      expect(subject.transaction_history.length).to eq(1)
-    end
   end
 
   describe 'A $500 withrawal after another $2000 deposit' do
@@ -41,10 +44,6 @@ describe Account do
 
     it 'should show balance of $2500' do
       expect(subject.balance).to eq(2500)
-    end
-
-    it 'should have 3 transactions in the history' do
-      expect(subject.transaction_history.length).to eq(3)
     end
 
   end
