@@ -1,6 +1,6 @@
 # understands a customer's balance
 
-class Bank
+class Account
 
   attr_reader :balance, :transaction_history, :statement
 

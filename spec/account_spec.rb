@@ -1,9 +1,8 @@
-require 'bank'
+require 'account'
 
-describe Bank do
+describe Account do
 
-  subject(:bank) { described_class.new }
-  let(:deposit_class) {double :deposit_class, new: deposit_transaction }
+  subject(:account) { described_class.new }
 
   describe 'On initialization it ...' do
 

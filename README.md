@@ -29,10 +29,10 @@ How to run this application
 1. Clone this repo --> `$ git clone https://github.com/mfperkins/ttBank`
 2. Change into this new directory --> `$ cd ttBank`
 3. Start up irb --> `$ irb`
-4. Load the files `$ require './lib/bank.rb'` and `require './lib/transaction.rb'`
-5. Create a new bank `$ myBank = Bank.new`
+4. Load the files `$ require './lib/account.rb'` and `require './lib/transaction.rb'`
+5. Create a new bank `$ myAccount = Account.new`
 6. Make a few deposits and withdrawals
-   * `$ myBank.deposit(1000)`
-   * `$ myBank.deposit(2000)`
-   * `$ myBank.withdrawal(500)`
-7. Print your statement to see your transactions `$ myBank.statement`
+   * `$ myAccount.deposit(1000)`
+   * `$ myAccount.deposit(2000)`
+   * `$ myAccount.withdrawal(500)`
+7. Print your statement to see your transactions `$ myAccount.statement`
