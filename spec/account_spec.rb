@@ -27,7 +27,7 @@ describe Account do
       subject.deposit(1000)
     end
 
-    it 'should increase the balance by 10' do
+    it 'should increase the balance by 1000' do
       expect(subject.balance).to eq(1000)
     end
 
