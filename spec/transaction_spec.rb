@@ -18,8 +18,6 @@ describe Transaction do
       expect(subject.type).to eq("credit")
     end
 
-
   end
-
 
 end
