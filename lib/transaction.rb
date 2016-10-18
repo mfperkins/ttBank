@@ -1,3 +1,5 @@
+#understands the details of one transaction
+
 class Transaction
 
   attr_reader :time, :amount, :type

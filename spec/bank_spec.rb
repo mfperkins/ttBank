@@ -17,18 +17,35 @@ describe Bank do
 
   end
 
-  describe 'A $10 deposit' do
+  describe 'A $1000 deposit' do
 
     before(:each) do
-      subject.deposit(10)
+      subject.deposit(1000)
     end
 
     it 'should increase the balance by 10' do
-      expect(subject.balance).to eq(10)
+      expect(subject.balance).to eq(1000)
     end
 
     it 'should add a transaction to the history' do
-      expect(subject.transaction_history).to_not be_empty
+      expect(subject.transaction_history.length).to eq(1)
+    end
+  end
+
+  describe 'A $500 withrawal after another $2000 deposit' do
+
+    before(:each) do
+      subject.deposit(1000)
+      subject.deposit(2000)
+      subject.withdrawal(500)
+    end
+
+    it 'should have a balance of $2500' do
+      expect(subject.balance).to eq(2500)
+    end
+
+    it 'should add a transaction to the history' do
+      expect(subject.transaction_history.length).to eq(3)
     end
   end
 
