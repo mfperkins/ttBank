@@ -7,4 +7,11 @@ class Bank
     @transaction_history = []
   end
 
+  def deposit(amount, transaction = Transaction)
+    deposit = transaction.new("credit", amount)
+    @balance += deposit.amount
+    @transaction_history.push(deposit)
+  end
+
+
 end

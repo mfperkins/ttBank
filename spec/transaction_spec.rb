@@ -2,7 +2,7 @@ require 'transaction'
 
 describe Transaction do
 
-  subject(:transaction) { described_class.new("credit") }
+  subject(:transaction) { described_class.new("credit", 10) }
 
   describe 'On initialization it ...' do
 
@@ -10,8 +10,8 @@ describe Transaction do
       expect(subject.time).to be_kind_of(Time)
     end
 
-    it "should have an amount of 0" do
-      expect(subject.amount).to eq(0)
+    it "should have an amount passed in" do
+      expect(subject.amount).to eq(10)
     end
 
     it "should have a specific type" do
