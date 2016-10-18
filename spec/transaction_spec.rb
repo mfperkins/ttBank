@@ -18,6 +18,18 @@ describe Transaction do
       expect(subject.type).to eq("credit")
     end
 
+    it 'should have a current balance of 0' do
+      expect(subject.current_balance).to eq(0)
+    end
+
+  end
+
+  describe '#set_balance to 1000' do
+
+    it 'should update current_balance' do
+      transaction.set_balance(100)
+      expect(transaction.current_balance).to eq(100)
+    end
   end
 
 end

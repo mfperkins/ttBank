@@ -40,13 +40,29 @@ describe Bank do
       subject.withdrawal(500)
     end
 
-    it 'should have a balance of $2500' do
+    it 'should show balance of $2500' do
       expect(subject.balance).to eq(2500)
     end
 
-    it 'should add a transaction to the history' do
+    it 'should have 3 transactions in the history' do
       expect(subject.transaction_history.length).to eq(3)
     end
+
+  end
+
+  describe 'Printing a bank statement for the 3 transactions' do
+
+    before(:each) do
+      subject.deposit(1000)
+      subject.deposit(2000)
+      subject.withdrawal(500)
+    end
+
+    it 'should show all transactions and details' do
+      expect { subject.statement }.to output("    date    || credit || debit || balance\n2016/10/18 ||  || 500 || 2500\n2016/10/18 || 2000 ||  || 3000\n2016/10/18 || 1000 ||  || 1000\n").to_stdout
+    end
+
+
   end
 
 end
