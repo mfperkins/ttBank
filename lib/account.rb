@@ -12,12 +12,12 @@ class Account
   end
 
   def deposit(amount)
-    transaction_history.deposit(amount)
+    transaction_history.deposit(amount, balance)
     @balance += amount
   end
 
   def withdrawal(amount)
-    transaction_history.withdrawal(amount)
+    transaction_history.withdrawal(amount, balance)
     @balance -= amount
   end
 
@@ -25,7 +25,8 @@ class Account
     transactions_to_print = transaction_history.log.reverse
     puts "    date    || credit || debit || balance"
     transactions_to_print.each do |transaction|
-      puts "#{get_date(transaction)} || #{get_credit_amount(transaction)} || #{get_debit_amount(transaction)} || #{transaction.current_balance}"
+      puts "#{get_date(transaction)} || #{get_credit_amount(transaction)} || " +
+      "#{get_debit_amount(transaction)} || #{transaction.current_balance}"
     end
   end
 

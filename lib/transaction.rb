@@ -4,15 +4,11 @@ class Transaction
 
   attr_reader :time, :amount, :type, :current_balance
 
-  def initialize(type, amount)
+  def initialize(type, amount, current_balance)
     @time = Time.new
     @amount = amount
     @type = type
-    @current_balance = 0
-  end
-
-  def set_balance(amount)
-    @current_balance = amount
+    @current_balance = current_balance
   end
 
 end

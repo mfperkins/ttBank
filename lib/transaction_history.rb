@@ -10,15 +10,13 @@ class TransactionHistory
     @log = []
   end
 
-  def deposit(amount, transaction = Transaction)
-    deposit = transaction.new("credit", amount)
-    deposit.set_balance(amount)
+  def deposit(amount, balance, transaction = Transaction)
+    deposit = transaction.new("credit", amount, (balance + amount))
     @log.push(deposit)
   end
 
-  def withdrawal(amount, transaction = Transaction)
-    withdrawal = transaction.new("debit", amount)
-    withdrawal.set_balance(amount)
+  def withdrawal(amount, balance, transaction = Transaction)
+    withdrawal = transaction.new("debit", amount, (balance - amount))
     @log.push(withdrawal)
   end
 

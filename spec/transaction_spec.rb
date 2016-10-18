@@ -2,7 +2,7 @@ require 'transaction'
 
 describe Transaction do
 
-  subject(:transaction) { described_class.new("credit", 10) }
+  subject(:transaction) { described_class.new("credit", 10, 100) }
 
   describe 'On initialization it ...' do
 
@@ -18,18 +18,10 @@ describe Transaction do
       expect(subject.type).to eq("credit")
     end
 
-    it 'should have a current balance of 0' do
-      expect(subject.current_balance).to eq(0)
+    it 'should have a current balance of 100' do
+      expect(subject.current_balance).to eq(100)
     end
 
-  end
-
-  describe '#set_balance to 1000' do
-
-    it 'should update current_balance' do
-      transaction.set_balance(100)
-      expect(transaction.current_balance).to eq(100)
-    end
   end
 
 end

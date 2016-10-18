@@ -9,15 +9,14 @@ describe Account do
   let(:transaction2) {double :transaction2, time: Time.new, type: "credit", amount: 2000, current_balance: 3000 }
   let(:transaction3) {double :transaction3, time: Time.new, type: "debit", amount: 500, current_balance: 2500 }
 
-
   describe 'On initialization it ...' do
-
-    it 'should have an empty transaction history' do
-      expect(subject.transaction_history).to eq(transactionHistory)
-    end
 
     it "should have a balance lf 0" do
       expect(subject.balance).to eq(0)
+    end
+
+    it 'should have an empty transaction history' do
+      expect(subject.transaction_history).to eq(transactionHistory)
     end
 
   end
@@ -59,7 +58,6 @@ describe Account do
     it 'should show all transactions and details' do
       expect { subject.statement }.to output("    date    || credit || debit || balance\n2016/10/18 ||  || 500 || 2500\n2016/10/18 || 2000 ||  || 3000\n2016/10/18 || 1000 ||  || 1000\n").to_stdout
     end
-
 
   end
 

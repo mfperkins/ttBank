@@ -15,7 +15,7 @@ describe TransactionHistory do
   describe 'A $1000 deposit' do
 
     before(:each) do
-      subject.deposit(1000)
+      subject.deposit(1000, 0)
     end
 
     it 'should add a transaction to the history' do
@@ -26,9 +26,9 @@ describe TransactionHistory do
   describe 'A $500 withrawal after another $2000 deposit' do
 
     before(:each) do
-      subject.deposit(1000)
-      subject.deposit(2000)
-      subject.withdrawal(500)
+      subject.deposit(1000, 0)
+      subject.deposit(2000, 1000)
+      subject.withdrawal(500,3000)
     end
 
     it 'should have 3 transactions in the history' do
