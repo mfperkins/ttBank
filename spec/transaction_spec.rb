@@ -2,24 +2,26 @@ require 'transaction'
 
 describe Transaction do
 
-  subject(:transaction) { described_class.new("credit", 10, 0) }
+  amount = 10
+  current_balance = 0
+  subject(:transaction) { described_class.new("credit", amount, current_balance) }
 
   describe 'On initialization it ...' do
 
     it 'should have a timestamp' do
-      expect(subject.time).to be_kind_of(Time)
+      expect(subject.get_time).to be_kind_of(Time)
     end
 
     it "should have an amount passed in" do
-      expect(subject.amount).to eq(10)
+      expect(subject.get_amount).to eq(amount)
     end
 
     it "should have a specific type" do
-      expect(subject.type).to eq("credit")
+      expect(subject.get_type).to eq("credit")
     end
 
     it 'should have a current balance of 0' do
-      expect(subject.current_balance).to eq(0)
+      expect(subject.get_current_balance).to eq(current_balance)
     end
 
   end

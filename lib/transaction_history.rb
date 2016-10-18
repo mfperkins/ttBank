@@ -4,8 +4,6 @@ require_relative 'transaction'
 
 class TransactionHistory
 
-  attr_reader :log
-
   def initialize
     @log = []
   end
@@ -19,5 +17,13 @@ class TransactionHistory
     withdrawal = transaction.new("debit", amount, (balance - amount))
     @log.push(withdrawal)
   end
+
+  def get_log
+    log
+  end
+
+  private
+
+  attr_reader :log
 
 end

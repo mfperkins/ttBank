@@ -2,37 +2,36 @@ require 'transaction_history'
 
 describe TransactionHistory do
 
+  first_amount = 1000
+  second_amount = 2000
+  third_amount = 500
+  first_balance = 0
+  second_balance = 1000
+  third_balance = 3000
+
   subject(:transactionHistory) { described_class.new }
-
-  describe 'On initialization it ...' do
-
-    it 'should have an empty history array' do
-      expect(subject.log).to eq([])
-    end
-
-  end
 
   describe 'A $1000 deposit' do
 
     before(:each) do
-      subject.deposit(1000, 0)
+      subject.deposit(first_amount, first_balance)
     end
 
     it 'should add a transaction to the history' do
-      expect(subject.log.length).to eq(1)
+      expect(subject.get_log.length).to eq(1)
     end
   end
 
   describe 'A $500 withrawal after another $2000 deposit' do
 
     before(:each) do
-      subject.deposit(1000, 0)
-      subject.deposit(2000, 1000)
-      subject.withdrawal(500,3000)
+      subject.deposit(first_amount, first_balance)
+      subject.deposit(second_amount, second_balance)
+      subject.withdrawal(third_amount,third_balance)
     end
 
     it 'should have 3 transactions in the history' do
-      expect(subject.log.length).to eq(3)
+      expect(subject.get_log.length).to eq(3)
     end
 
   end
